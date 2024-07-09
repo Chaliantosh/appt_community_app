@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Resident</title>
+</head>
+<body>
+    <h1>Edit Resident</h1>
+    <form method="POST" action="{{ url_for('edit_resident', index=index) }}">
+        Flat Number: <input type="text" name="flat" value="{{ resident['flat'] }}" readonly><br>
+        Occupancy Type: <input type="text" name="occupancy_type" value="{{ resident['occupancy_type'] }}" required><br>
+        Occupant Name: <input type="text" name="occupant_name" value="{{ resident['occupant_name'] }}" required><br>
+        Occupant Contact: <input type="text" name="occupant_contact" value="{{ resident['occupant_contact'] }}" required><br>
+        Owner: <input type="text" name="owner" value="{{ resident['owner'] }}" required><br>
+        Owner Contact: <input type="text" name="owner_contact" value="{{ resident['owner_contact'] }}" required><br>
+        Maintainence: <input type="text" name="maintainence" value="{{ resident['maintainence'] }}" required><br>
+        Default Amount: <input type="text" name="default_amount" value="{{ resident['default_amount'] }}" required><br>
+        <input type="submit" value="Update Resident">
+    </form>
+</body>
+</html>
+

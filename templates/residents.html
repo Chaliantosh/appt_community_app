@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Residents</title>
+</head>
+<body>
+    <h1>Residents Maintenance Status for {{ current_month }}</h1>
+    <table border="1">
+        <tr>
+            <th>Flat Number</th>
+            <th>Occupancy Type</th>
+            <th>Occupant Name</th>
+            <th>Occupant Contact</th>
+            <th>Owner</th>
+            <th>Owner Contact</th>
+            <th>Maintainence</th>
+            <th>Default Amount</th>
+            <th>Actions</th>
+        </tr>
+        {% for resident in residents %}
+        <tr>
+            <td>{{ resident['flat'] }}</td>
+            <td>{{ resident['occupancy_type'] }}</td>
+            <td>{{ resident['occupant_name'] }}</td>
+            <td>{{ resident['occupant_contact'] }}</td>
+            <td>{{ resident['owner'] }}</td>
+            <td>{{ resident['owner_contact'] }}</td>
+            <td>{{ resident['maintainence'] }}</td>
+            <td><a href="{{ url_for('default_amount', index=loop.index0) }}">{{ resident['default_amount'] }}</a></td>
+            <td>
+                <a href="{{ url_for('edit_resident', index=loop.index0) }}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('home') }}">Home</a>
+</body>
+</html>
