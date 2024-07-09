@@ -52,5 +52,16 @@
         "owner_contact": "4567",
         "maintainence": "5454",
         "default_amount": "789"
+    },
+    {
+        "flat": "A2",
+        "occupancy_type": "Owner",
+        "occupant_name": "hghghg",
+        "occupant_contact": "25689",
+        "owner": "efgh",
+        "owner_contact": "25689",
+        "maintainence": "5454",
+        "default_amount": "100",
+        "pending_months": []
     }
 ]

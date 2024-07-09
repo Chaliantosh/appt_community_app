@@ -23,31 +23,34 @@ def events():
 @app.route('/add_resident', methods=['GET', 'POST'])
 def add_resident():
     if request.method == 'POST':
-        flat = request.form['flat']
-        name = request.form['name']
-        new_resident = {
-            "flat": flat,
-            "occupancy_type": request.form['occupancy_type'],
-            "occupant_name": request.form['occupant_name'],
-            "occupant_contact": request.form['occupant_contact'],
-            "owner": request.form['owner'],
-            "owner_contact": request.form['owner_contact'],
-            "maintainence": request.form['maintainence'],
-            "default_amount": request.form['default_amount'],
-            "pending_months": []
-        }
-        if os.path.exists('data/residents.json'):
-            with open('data/residents.json', 'r+') as f:
-                residents = json.load(f)
-                if any(resident['flat'] == flat for resident in residents):
-                    return redirect(url_for('home'))  # Redirect to home if flat already exists
-                residents.append(new_resident)
-                f.seek(0)
-                json.dump(residents, f, indent=4)
-        else:
-            with open('data/residents.json', 'w') as f:
-                json.dump([new_resident], f, indent=4)
-        return redirect(url_for('residents'))
+        try:
+            flat = request.form['flat']
+            name = request.form['name']
+            new_resident = {
+                "flat": flat,
+                "occupancy_type": request.form['occupancy_type'],
+                "occupant_name": request.form['occupant_name'],
+                "occupant_contact": request.form['occupant_contact'],
+                "owner": request.form['owner'],
+                "owner_contact": request.form['owner_contact'],
+                "maintainence": request.form['maintainence'],
+                "default_amount": request.form['default_amount'],
+                "pending_months": []
+            }
+            if os.path.exists('data/residents.json'):
+                with open('data/residents.json', 'r+') as f:
+                    residents = json.load(f)
+                    if any(resident['flat'] == flat for resident in residents):
+                        return redirect(url_for('home'))  # Redirect to home if flat already exists
+                    residents.append(new_resident)
+                    f.seek(0)
+                    json.dump(residents, f, indent=4)
+            else:
+                with open('data/residents.json', 'w') as f:
+                    json.dump([new_resident], f, indent=4)
+            return redirect(url_for('residents'))
+        except KeyError as e:
+            return f"Missing form key: {e}", 400
     return render_template('add_resident.html')
 
 @app.route('/edit_resident/<int:index>', methods=['GET', 'POST'])
@@ -78,6 +81,8 @@ def default_amount(index):
         amount = request.form['amount']
         with open('data/residents.json', 'r+') as f:
             residents = json.load(f)
+            if 'pending_months' not in residents[index]:
+                residents[index]['pending_months'] = []
             residents[index]['pending_months'].append((month, year, amount))
             f.seek(0)
             json.dump(residents, f, indent=4)
@@ -90,4 +95,3 @@ def default_amount(index):
 
 if __name__ == '__main__':
     app.run(debug=True)
-

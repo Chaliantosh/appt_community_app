@@ -7,19 +7,26 @@
 <body>
     <h1>Add Resident</h1>
     <form method="POST" action="{{ url_for('add_resident') }}">
-        Flat Number: <input type="text" name="flat" required><br>
-        Occupancy Type: <input type="text" name="occupancy_type" required><br>
-        Occupant Name: <input type="text" name="occupant_name" required><br>
-        Occupant Contact: <input type="text" name="occupant_contact" required><br>
-        Owner: <input type="text" name="owner" required><br>
-        Owner Contact: <input type="text" name="owner_contact" required><br>
-        Maintainence: <input type="text" name="maintainence" required><br>
-        Default Amount: <input type="text" name="default_amount" required><br>
-        <input type="submit" value="Add Resident">
+        <label for="flat">Flat:</label>
+        <input type="text" id="flat" name="flat" required><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="occupancy_type">Occupancy Type:</label>
+        <input type="text" id="occupancy_type" name="occupancy_type" required><br>
+        <label for="occupant_name">Occupant Name:</label>
+        <input type="text" id="occupant_name" name="occupant_name" required><br>
+        <label for="occupant_contact">Occupant Contact:</label>
+        <input type="text" id="occupant_contact" name="occupant_contact" required><br>
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" name="owner" required><br>
+        <label for="owner_contact">Owner Contact:</label>
+        <input type="text" id="owner_contact" name="owner_contact" required><br>
+        <label for="maintainence">Maintenance:</label>
+        <input type="text" id="maintainence" name="maintainence" required><br>
+        <label for="default_amount">Default Amount:</label>
+        <input type="text" id="default_amount" name="default_amount" required><br>
+        <button type="submit">Add Resident</button>
     </form>
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
 </body>
 </html>
 
