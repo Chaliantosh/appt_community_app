@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Residents</title>
-</head>
-<body>
-    <h1>Residents Maintenance Status for {{ current_month }}</h1>
-    <table border="1">
+{% extends "base.html" %}
+
+{% block title %}Residents{% endblock %}
+
+{% block content %}
+<h1>Residents Maintenance Status for {{ current_month }}</h1>
+
+<table border="1">
+    <thead>
         <tr>
-            <th>Flat Number</th>
+            <th>Apartment Number</th>
             <th>Occupancy Type</th>
             <th>Occupant Name</th>
             <th>Occupant Contact</th>
-            <th>Owner</th>
+            <th>Owner Name</th>
             <th>Owner Contact</th>
-            <th>Maintainence</th>
-            <th>Default Amount</th>
+            <th>Maintenance Status</th>
+            <th>Defaulted Amount</th>
             <th>Actions</th>
         </tr>
+    </thead>
+    <tbody>
         {% for resident in residents %}
         <tr>
             <td>{{ resident['flat'] }}</td>
@@ -26,14 +28,14 @@
             <td>{{ resident['occupant_contact'] }}</td>
             <td>{{ resident['owner'] }}</td>
             <td>{{ resident['owner_contact'] }}</td>
-            <td>{{ resident['maintainence'] }}</td>
-            <td><a href="{{ url_for('default_amount', index=loop.index0) }}">{{ resident['default_amount'] }}</a></td>
-            <td>
-                <a href="{{ url_for('edit_resident', index=loop.index0) }}">Edit</a>
-            </td>
+            <td>{{ resident['maintenance'] }}</td>
+            <td>{{ resident['defaulted_amount'] }}</td>
+            <td><a href="{{ url_for('edit_resident', index=loop.index0) }}">Edit</a></td>
         </tr>
         {% endfor %}
-    </table>
-    <a href="{{ url_for('home') }}">Home</a>
-</body>
-</html>
+    </tbody>
+</table>
+
+<br>
+<a href="{{ url_for('home') }}">Home</a>
+{% endblock %}

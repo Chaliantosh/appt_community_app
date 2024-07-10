@@ -1,67 +1,32 @@
 [
     {
-        "flat": "32B",
+        "flat": "A11",
         "occupancy_type": "Owner",
-        "occupant_name": "Jim",
-        "occupant_contact": "25689",
-        "owner": "Jim",
-        "owner_contact": "25689",
-        "maintainence": "Paid",
-        "default_amount": "5000",
-        "pending_months": [
-            [
-                "Jan",
-                "2024",
-                "2000"
-            ],
-            [
-                "Feb",
-                "2024",
-                "2000"
-            ],
-            [
-                "Mar",
-                "2024",
-                "1000"
-            ]
-        ]
+        "occupant_name": "Santosh Chalivendri",
+        "occupant_contact": "6899",
+        "owner": "5555",
+        "owner_contact": "7890",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "2000"
     },
     {
-        "flat": "21B",
+        "flat": "A12",
         "occupancy_type": "Tenant",
-        "occupant_name": "GFDFDF",
-        "occupant_contact": "44556",
-        "owner": "fgrerere",
-        "owner_contact": "3333",
-        "maintainence": "Not Paid",
-        "default_amount": "875",
-        "pending_months": [
-            [
-                "Dec",
-                "2021",
-                "875"
-            ]
-        ]
-    },
-    {
-        "flat": "A1",
-        "occupancy_type": "Owner",
-        "occupant_name": "GFDFDF12",
-        "occupant_contact": "3434",
-        "owner": "fgr",
-        "owner_contact": "4567",
-        "maintainence": "5454",
-        "default_amount": "789"
-    },
-    {
-        "flat": "A2",
-        "occupancy_type": "Owner",
         "occupant_name": "hghghg",
         "occupant_contact": "25689",
-        "owner": "efgh",
+        "owner": "fgrerere",
         "owner_contact": "25689",
-        "maintainence": "5454",
-        "default_amount": "100",
-        "pending_months": []
+        "maintenance": "Paid",
+        "defaulted_amount": "0"
+    },
+    {
+        "flat": "A13",
+        "occupancy_type": "Tenant",
+        "occupant_name": "GFDF",
+        "occupant_contact": "5678",
+        "owner": "hghghg",
+        "owner_contact": "25689",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "6000"
     }
 ]
