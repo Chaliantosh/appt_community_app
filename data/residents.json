@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "flat": "B11",
         "occupancy_type": "Owner",
         "occupant_name": "hghghg",
@@ -18,5 +19,35 @@
         "owner_contact": "7890",
         "maintenance": "Not Paid",
         "defaulted_amount": "5000"
+=======
+        "flat": "A11",
+        "occupancy_type": "Owner",
+        "occupant_name": "Santosh Chalivendri",
+        "occupant_contact": "6899",
+        "owner": "5555",
+        "owner_contact": "7890",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "2000"
+    },
+    {
+        "flat": "A12",
+        "occupancy_type": "Tenant",
+        "occupant_name": "hghghg",
+        "occupant_contact": "25689",
+        "owner": "fgrerere",
+        "owner_contact": "25689",
+        "maintenance": "Paid",
+        "defaulted_amount": "0"
+    },
+    {
+        "flat": "A13",
+        "occupancy_type": "Tenant",
+        "occupant_name": "GFDF",
+        "occupant_contact": "5678",
+        "owner": "hghghg",
+        "owner_contact": "25689",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "6000"
+>>>>>>> effd24866f5c3011f0c1655258cb02cafd407174
     }
 ]
