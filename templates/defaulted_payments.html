@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Defaulted Payments</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Flat #</th>
+            <th>Defaulted Month & Year</th>
+            <th>Defaulted Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in defaulted_payments %}
+        <tr>
+            <td>{{ payment.flat }}</td>
+            <td>{{ payment.defaulted_month_year }}</td>
+            <td>{{ payment.defaulted_amount }}</td>
+            <td>
+                <a href="{{ url_for('edit_defaulted_payment', index=loop.index0) }}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Add Defaulted Payment</h3>
+<form method="POST" action="{{ url_for('defaulted_payments') }}">
+    <div class="form-group">
+        <label for="flat">Flat #</label>
+        <input type="text" class="form-control" id="flat" name="flat" required>
+    </div>
+    <div class="form-group">
+        <label for="defaulted_month_year">Defaulted Month & Year</label>
+        <input type="text" class="form-control" id="defaulted_month_year" name="defaulted_month_year" required>
+    </div>
+    <div class="form-group">
+        <label for="defaulted_amount">Defaulted Amount</label>
+        <input type="number" class="form-control" id="defaulted_amount" name="defaulted_amount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Defaulted Payment</button>
+</form>
+{% endblock %}
+

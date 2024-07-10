@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Defaulted Payment</h2>
+<form method="POST" action="{{ url_for('edit_defaulted_payment', index=index) }}">
+    <div class="form-group">
+        <label for="flat">Flat #</label>
+        <input type="text" class="form-control" id="flat" name="flat" value="{{ payment.flat }}" required>
+    </div>
+    <div class="form-group">
+        <label for="defaulted_month_year">Defaulted Month & Year</label>
+        <input type="text" class="form-control" id="defaulted_month_year" name="defaulted_month_year" value="{{ payment.defaulted_month_year }}" required>
+    </div>
+    <div class="form-group">
+        <label for="defaulted_amount">Defaulted Amount</label>
+        <input type="number" class="form-control" id="defaulted_amount" name="defaulted_amount" value="{{ payment.defaulted_amount }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}
+

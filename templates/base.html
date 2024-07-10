@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apartment Community App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('residents') }}">Residents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_resident') }}">Add Resident</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('defaulted_payments') }}">Defaulted Payments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('fixed_deposit') }}">Fixed Deposit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container center-content">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-warning" role="alert">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <div class="text-center">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

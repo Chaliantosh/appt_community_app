@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resident</title>
+</head>
+<body>
+    <h1>Edit Resident</h1>
+    <form action="{{ url_for('edit_resident', index=index) }}" method="post">
+        <label for="flat">Apartment Number:</label>
+        <input type="text" id="flat" name="flat" value="{{ resident.flat }}" required><br><br>
+        
+        <label for="occupancy_type">Occupancy Type:</label>
+        <select id="occupancy_type" name="occupancy_type" required>
+            <option value="Owner" {% if resident.occupancy_type == 'Owner' %} selected {% endif %}>Owner</option>
+            <option value="Tenant" {% if resident.occupancy_type == 'Tenant' %} selected {% endif %}>Tenant</option>
+        </select><br><br>
+        
+        <label for="occupant_name">Occupant Name:</label>
+        <input type="text" id="occupant_name" name="occupant_name" value="{{ resident.occupant_name }}" required><br><br>
+        
+        <label for="occupant_contact">Occupant Contact:</label>
+        <input type="text" id="occupant_contact" name="occupant_contact" value="{{ resident.occupant_contact }}" required><br><br>
+        
+        <label for="owner">Owner Name:</label>
+        <input type="text" id="owner" name="owner" value="{{ resident.owner }}" required><br><br>
+        
+        <label for="owner_contact">Owner Contact:</label>
+        <input type="text" id="owner_contact" name="owner_contact" value="{{ resident.owner_contact }}" required><br><br>
+        
+        <label for="maintenance">Maintenance:</label>
+        <select id="maintenance" name="maintenance" required>
+            <option value="Paid" {% if resident.maintenance == 'Paid' %} selected {% endif %}>Paid</option>
+            <option value="Not Paid" {% if resident.maintenance == 'Not Paid' %} selected {% endif %}>Not Paid</option>
+        </select><br><br>
+        
+        <label for="defaulted_amount">Defaulted Amount:</label>
+        <input type="text" id="defaulted_amount" name="defaulted_amount" value="{{ resident.defaulted_amount }}" required><br><br>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <a href="{{ url_for('home') }}">Home</a>
+</body>
+</html>

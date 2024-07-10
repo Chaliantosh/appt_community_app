@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Fixed Deposits</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Deposited Amount</th>
+            <th>Account Number</th>
+            <th>Maturity Date</th>
+            <th>Maturity Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deposit in fixed_deposits %}
+        <tr>
+            <td>{{ deposit.deposited_amount }}</td>
+            <td>{{ deposit.account_number }}</td>
+            <td>{{ deposit.maturity_date }}</td>
+            <td>{{ deposit.maturity_amount }}</td>
+            <td>
+                <a href="{{ url_for('edit_fixed_deposit', index=loop.index0) }}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Add Fixed Deposit</h3>
+<form method="POST" action="{{ url_for('fixed_deposit') }}">
+    <div class="form-group">
+        <label for="deposited_amount">Deposited Amount</label>
+        <input type="number" class="form-control" id="deposited_amount" name="deposited_amount" required>
+    </div>
+    <div class="form-group">
+        <label for="account_number">Account Number</label>
+        <input type="text" class="form-control" id="account_number" name="account_number" required>
+    </div>
+    <div class="form-group">
+        <label for="maturity_date">Maturity Date</label>
+        <input type="date" class="form-control" id="maturity_date" name="maturity_date" required>
+    </div>
+    <div class="form-group">
+        <label for="maturity_amount">Maturity Amount</label>
+        <input type="number" class="form-control" id="maturity_amount" name="maturity_amount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Fixed Deposit</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,22 @@
+[
+    {
+        "flat": "B11",
+        "occupancy_type": "Owner",
+        "occupant_name": "hghghg",
+        "occupant_contact": "25689",
+        "owner": "hghghg",
+        "owner_contact": "25689",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "1000"
+    },
+    {
+        "flat": "B12",
+        "occupancy_type": "Tenant",
+        "occupant_name": "hghghg",
+        "occupant_contact": "25689",
+        "owner": "efgh",
+        "owner_contact": "7890",
+        "maintenance": "Not Paid",
+        "defaulted_amount": "5000"
+    }
+]
