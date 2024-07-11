@@ -69,12 +69,27 @@ def residents():
     current_month = datetime.now().strftime('%B %Y')
     return render_template('residents.html', residents=residents, current_month=current_month)
 
+from flask import flash
+
 @app.route('/add_resident', methods=['GET', 'POST'])
 @login_required
 def add_resident():
     if request.method == 'POST':
+        flat = request.form['flat']
+        
+        # Load current residents
+        with open('data/residents.json', 'r') as f:
+            residents = json.load(f)
+        
+        # Check if the apartment number already exists
+        for resident in residents:
+            if resident['flat'] == flat:
+                flash('Apartment number already exists!', 'danger')
+                return redirect(url_for('add_resident'))
+
+        # Create a new resident entry
         new_resident = {
-            'flat': request.form['flat'],
+            'flat': flat,
             'occupancy_type': request.form['occupancy_type'],
             'occupant_name': request.form['occupant_name'],
             'occupant_contact': request.form['occupant_contact'],
@@ -83,14 +98,19 @@ def add_resident():
             'maintenance': request.form['maintenance'],
             'defaulted_amount': request.form['defaulted_amount']
         }
-        with open('data/residents.json', 'r') as f:
-            residents = json.load(f)
+        
+        # Add the new resident to the list
         residents.append(new_resident)
+        
+        # Save the updated residents list
         with open('data/residents.json', 'w') as f:
             json.dump(residents, f, indent=4)
+        
+        flash('Resident added successfully!', 'success')
         return redirect(url_for('residents'))
     
     return render_template('add_resident.html')
+
 
 @app.route('/edit_resident/<int:index>', methods=['GET', 'POST'])
 @login_required
@@ -114,6 +134,18 @@ def edit_resident(index):
         return redirect(url_for('residents'))
 
     return render_template('edit_resident.html', resident=residents[index], index=index)
+
+# Route to delete a resident
+@app.route('/delete_resident/<int:index>', methods=['POST'])
+@login_required
+def delete_resident(index):
+    with open('data/residents.json', 'r') as f:
+        residents = json.load(f)
+    if index < len(residents):
+        residents.pop(index)
+        with open('data/residents.json', 'w') as f:
+            json.dump(residents, f, indent=4)
+    return redirect(url_for('residents'))
 
 @app.route('/defaulted_payments', methods=['GET', 'POST'])
 @login_required
@@ -187,6 +219,30 @@ def edit_fixed_deposit(index):
         return redirect(url_for('fixed_deposit'))
 
     return render_template('edit_fixed_deposit.html', deposit=fixed_deposits[index], index=index)
+
+# Route to delete a defaulted payment
+@app.route('/delete_defaulted_payment/<int:index>', methods=['POST'])
+@login_required
+def delete_defaulted_payment(index):
+    with open('data/defaulted_amount.json', 'r') as f:
+        defaulted_payments = json.load(f)
+    if index < len(defaulted_payments):
+        defaulted_payments.pop(index)
+        with open('data/defaulted_amount.json', 'w') as f:
+            json.dump(defaulted_payments, f, indent=4)
+    return redirect(url_for('defaulted_payments'))
+
+# Route to delete a fixed deposit
+@app.route('/delete_fixed_deposit/<int:index>', methods=['POST'])
+@login_required
+def delete_fixed_deposit(index):
+    with open('data/fixed_deposit.json', 'r') as f:
+        fixed_deposits = json.load(f)
+    if index < len(fixed_deposits):
+        fixed_deposits.pop(index)
+        with open('data/fixed_deposit.json', 'w') as f:
+            json.dump(fixed_deposits, f, indent=4)
+    return redirect(url_for('fixed_deposit'))
 
 if __name__ == '__main__':
     app.run(debug=True)
