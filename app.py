@@ -3,11 +3,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import json
 import csv
 from datetime import datetime  # Correct import
-<<<<<<< HEAD
 import json
 
-=======
->>>>>>> effd24866f5c3011f0c1655258cb02cafd407174
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -24,7 +21,6 @@ class User(UserMixin):
 def load_user(user_id):
     return User(user_id)
 
-<<<<<<< HEAD
 def save_defaulted_payments(defaulted_payments):
     with open('data/defaulted_amount.json', 'w') as f:
         json.dump(defaulted_payments, f, indent=4)
@@ -36,8 +32,6 @@ def load_defaulted_payments():
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 
-=======
->>>>>>> effd24866f5c3011f0c1655258cb02cafd407174
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -121,7 +115,6 @@ def edit_resident(index):
 
     return render_template('edit_resident.html', resident=residents[index], index=index)
 
-<<<<<<< HEAD
 @app.route('/defaulted_payments', methods=['GET', 'POST'])
 @login_required
 def defaulted_payments():
@@ -194,9 +187,6 @@ def edit_fixed_deposit(index):
         return redirect(url_for('fixed_deposit'))
 
     return render_template('edit_fixed_deposit.html', deposit=fixed_deposits[index], index=index)
-=======
-
->>>>>>> effd24866f5c3011f0c1655258cb02cafd407174
 
 if __name__ == '__main__':
     app.run(debug=True)
